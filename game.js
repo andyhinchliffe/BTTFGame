@@ -3,6 +3,9 @@ const intro = document.getElementById("intro");
 const congrats = document.getElementById("congrats");
 const gamearea = document.getElementById("gamearea");
 const firstRoom = document.getElementById("firstRoom");
+const itemDisplay = document.getElementById("itemDisplay");
+const keyHover = document.getElementById("keyHover");
+const keyDelorean = document.getElementById("keyDelorean");
 
   
 
@@ -19,6 +22,10 @@ function displayEnd(){
 
 }
 
+function clearWarning(){
+  document.getElementById("noWay").style.display = "none"
+}
+
 
 // ---------------------------------
 // ROOMS ---------------------------
@@ -32,6 +39,7 @@ class Room {
       this._linkedRooms = {};
       this._character = "";
       this._year = year;
+      this._item = "";
     }
   
     get name() {
@@ -44,6 +52,11 @@ class Room {
   
     get character() {
       return this._character
+    }
+
+    get item(){
+
+      return this._item
     }
   
     set name(value) {
@@ -65,6 +78,11 @@ class Room {
     set character(value) {
       this._character = value;
     }
+
+    set item(value) {
+      this._item = value;
+    }
+
 
  
     
@@ -111,6 +129,7 @@ getDetails() {
       return this._linkedRooms[direction];
     } else {
         document.getElementById("noWay").style.display = "block"
+        setInterval(clearWarning, 3000);
         
       
 
@@ -143,7 +162,7 @@ class Item {
         alert("Decription is too short.");
         return;
       }
-      this._name = value;
+      this._description = value;
     }
   
     get name() {
@@ -162,7 +181,7 @@ class Item {
      * @version 1.0
      */
     describe() {
-      return "The " + this._name + " is " + this._description;
+      return this._name + " which is " + this._description;
     }
   
   
@@ -241,26 +260,26 @@ class Character {
 // CREATE ROOMS
 // ---------------------------------------------------
 const HVSchool = new Room("Hill Valley High School", 1955);
-HVSchool.description = "a long narrow room with worktops on either side and a large bench in the middle";
+HVSchool.description = "a bustling 1955 high school.";
 const OWestHill = new Room("Old West Hill Valley", 1885);
-OWestHill.description = "a large room with two sofas and a large fire place";
+OWestHill.description = "a dusty Old West town with cowboys and plenty of hidden danger.";
 const FHillValley = new Room("Future Hill Valley", 2015);
-FHillValley.description = "a large room with a pool table at it's centre";
+FHillValley.description = "a futuristic metropolis where tech wonders and choices shape your destiny.";
 const WestonSaloon = new Room("Western Saloon", 1955);
-WestonSaloon.description = "a grand entrance hall with large paintings around the walls";
+WestonSaloon.description = "a lively 1885 saloon where you can meet cowboys, play cards, and unravel Wild West secrets.";
 const AlternateFuture = new Room("Alternate Future", 2025);
-AlternateFuture.description = "a grand entrance hall with large paintings around the walls";
+AlternateFuture.description = "an alternate 2025 dystopia where you can navigate transformed landscapes and uncover hidden truths.";
 const PastHillValley = new Room("Past Hill Valley", 1885);
-PastHillValley.description = "a grand entrance hall with large paintings around the walls";
+PastHillValley.description = "a historic 1955 town—meet iconic characters, solve mysteries, and shape the future.";
 const ClockTower = new Room("Clock Tower", 1955);
-ClockTower.description = "a grand entrance hall with large paintings around the walls";
+ClockTower.description = "a pivotal 1955 Clock Tower, your decisions here could impact time travel and alter destinies.";
 
 
 // ---------------------------------------------------
 // LINK ROOMS
 // ---------------------------------------------------
 HVSchool.linkRoom("north", FHillValley);
-HVSchool.linkRoom("east", OWestHill);
+HVSchool.linkRoom("west", OWestHill);
 // OWestHill.linkRoom("north", OWestHill);
 OWestHill.linkRoom("east", HVSchool);
 
@@ -280,22 +299,71 @@ AlternateFuture.linkRoom("north", PastHillValley);
 
 PastHillValley.linkRoom("east", ClockTower);
 PastHillValley.linkRoom("south", AlternateFuture);
+
+
+
+// ------CREATE Characters & PUT IN ROOMS---------------------
+const Biff = new Character("Biff");
+Biff.description = "the school bully";
+FHillValley.character= Biff;
+Biff.conversation = "You will never get past me!"
+
+const DocBrown = new Character("Doc Brown");
+DocBrown.description = "a scientist";
+ClockTower.character= DocBrown ;
+DocBrown.conversation = "You need to find a way to get up to 88 miles per hour to get back to 1985!";
+
+
+// ----------CREATE ITEMS & PUT IN ROOMS--------------------------
+
+const HoverBoard = new Item("Hover Board");
+HoverBoard.description = "fast futuristic hovering board";
+FHillValley.item = HoverBoard;
+
+const Delorean = new Item("Delorean");
+Delorean.description = "very fast car!";
+ClockTower.item = Delorean;
+
+
+
+
 // ---------------------------------------------------
 // LINK JS to HTML
 // ---------------------------------------------------
 
 function displayRoomInfo(room) {
     // 
+
+    if(room.item._name == "Hover Board"){
+      keyHover.classList.remove("font-light");
+      keyHover.classList.add("font-bold");
+    };
+
+    if(room.item._name == "Delorean"){
+      keyDelorean.classList.remove("font-light");
+      keyDelorean.classList.add("font-bold");
+    };
+
      let occupantMsg = ""
     if (room.character === "") {
       occupantMsg = ""
     } else {
       occupantMsg = room.character.describe() + ". " + room.character.converse()
     }
+
+    let itemText = ""
+    if (room.item != ""){
+      itemText="In this room is a " + room.item.describe() }
+    itemDisplay.innerText = itemText;
+    
+    
+    console.log(room.item._name)
+    
   
     textContent = "<p>" + room.describe() +"</p>" + "<p>" +
       occupantMsg + "</p>" + "<p>" + room.getDetails() + "</p>";
 
+        
     
     document.getElementById("yearDisplay").innerText = room.year()
     document.getElementById("textarea").innerHTML = textContent;
@@ -323,7 +391,9 @@ function startGame() {
         congrats.innerText=""
         const directions = ["north", "south", "east", "west"]
         if (command.toLowerCase()==="hover"  && currentRoom.name==="Future Hill Valley"){
-            congrats.innerText="Well done on getting past Biff"
+            congrats.innerText="Well done on getting past Biff!! Now it is time to get back to 1985"
+            keyHover.classList.remove("font-bold");
+            keyHover.classList.add("font-light");
             currentRoom = WestonSaloon
             document.getElementById("usertext").value = ""
             displayRoomInfo(currentRoom);
@@ -339,7 +409,9 @@ function startGame() {
         } else {
           document.getElementById("usertext").value = ""
           alert("that is not a valid command please try again")
+          
           document.getElementById("noWay").display = "block"
+          
         }
   
       }
@@ -348,6 +420,8 @@ function startGame() {
 
   function firstRoomStart(){
     firstRoom.style.display="none";
+    document.getElementById("usertext").style.visibility="visible"
+
     startGame();
 
   }

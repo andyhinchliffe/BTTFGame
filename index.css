@@ -24,3 +24,8 @@ body{
 
     display: none;
 }
+
+#usertext{
+
+    visibility: hidden;
+}
