@@ -1,0 +1,26 @@
+#intro{
+
+    /* display: none; */
+}
+
+#gamearea{
+
+    display: none;
+}
+
+
+#outro{
+
+    display: none;
+}
+
+body{
+
+    /* background-image: url("images/space.jpg"); */
+
+}
+
+#noWay{
+
+    display: none;
+}
