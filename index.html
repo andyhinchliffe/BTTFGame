@@ -4,12 +4,14 @@
     <!--required meta--> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Back To The Future Adventure Game</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="index.css">
-    <!-- <script src="https://kit.fontawesome.com/d7258ac1d6.js" crossorigin="anonymous"></script> -->
+    <link href="https://fonts.cdnfonts.com/css/ds-digital" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@900&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -17,50 +19,114 @@
       
         <div>
                 <div id="intro">
-                <button id="startBut" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                    Start
-                  </button>
+
+                  <div class="text-center">
+                    <div id="back" class="text-5xl sm:text-7xl  md:text-8xl lg:text-9xl tracking-tight bg-gradient-to-b from-red-600 to-yellow-400 mt-16 skew-x-12 -mb-2 ">BACK \\\</div>
+                    <div class="flex">
+                      <div class="ml-auto pl-10 sm:pl-20">
+                      <div id="to" class="bg-gradient-to-b from-red-600 to-yellow-400 -skew-x-12 text-xl sm:text-2xl md:text-4xl lg:text-6xl">TO</div>
+                      <div id="the" class="bg-gradient-to-b from-red-600 to-yellow-400 -skew-x-12 text-xl sm:text-2xl md:text-4xl lg:text-6xl">THE</div>
+                      </div>
+                    
+                    <div class="tracking-tight mr-auto  -skew-x-12 ml-5 text-5xl sm:text-7xl  md:text-8xl lg:text-9xl bg-gradient-to-b from-red-600 to-yellow-400" id="future">FUTURE</div>
+                    </div>
+                    <p class="animate__animated animate__backInRight -skew-x-12 text-center text-2xl text-white">The Text Adventure Game</p>
+                    <button id="startBut" class="ml-auto mr-auto mt-5 bg-transparent hover:bg-gray-500 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                      Start
+                    </button>
+                  </div>
+
+                
                 </div>
         </div>
 
       <!-- INTRO PANEL --------------  -->
 
-      <!-- -----Instructions ------------------------------- -->
-
-      <!-- <div>
-        <div></div>
-      </div> -->
-
-      <!-- -----Instructions ------------------------------- -->
+    </div>   
       
 
 
       <!-- MAIN GAME PANEL------- -->
-        <div id="gamearea">
-        <div id="details">
+      
+      <div id="gamearea">
+      <div class="mr-auto text-white ml-1 mt-1 text-xl" id="smallLogo">Back To The Future Game</div>
+      <div class="flex grid">
+      <div class="ml-auto mr-auto mt-5 bg-zinc-400 w-80 rounded-md" id="timeCircuit">
+        <div id="timeCircuitBoxTop" class="rounded-md m-1 bg-zinc-600">
+            <div id="timeLabel" class="mr-auto ml-auto rounded-md -mb-1 text-center text-xs bg-black text text-slate-200 text-sm w-1/3">Current Room</div>
+            <div class="-m-2 flex">
+            <div id="month" class="rounded-md ml-auto bg-gray-950 text-red-700 p-2 m-3">OCT</div>
+            <div id="day" class="rounded-md bg-gray-950 text-red-700 m-3 p-2">26</div>
+            <div id="yearDisplay" class="rounded-md bg-gray-950 text-red-700 m-3 p-2">1900</div>
+            <div id="hour" class="rounded-md bg-gray-950 text-red-700 m-3 p-2">01</div>
+            <div id="min" class="rounded-md mr-auto bg-gray-950 text-red-700 m-3 p-2">21</div> 
+        </div>
+      </div>
+          
+       <div class="h-1"></div>
+    
+        <div id="timeCircuitBoxTop" class="rounded-md m-1 bg-zinc-600">
+            <div class="flex">
+            <div id="month" class="rounded-md ml-auto bg-gray-950 text-green-600 p-2 m-3">OCT</div>
+            <div id="day" class="rounded-md bg-gray-950 text-green-600 m-3 p-2">26</div>
+            <div id="yearDisplay" class="rounded-md bg-gray-950 text-green-600 m-3 p-2">1985</div>
+            <div id="hour" class="rounded-md bg-gray-950 text-green-600 m-3 p-2">01</div>
+            <div id="min" class="rounded-md mr-auto bg-gray-950 text-green-600 m-3 p-2">20</div>
+        </div> 
+            <div id="timeLabel" class="mr-auto ml-auto rounded-md -mt-1 text-center text-xs bg-black text text-slate-200 text-sm w-1/3">Year to get to</div>
+        </div>
+        </div>
+       
+    
+    
+    
+        </div> 
+        <div class="flex" >
+        <div class="ml-auto mr-auto p-10 mt-5 w-3/5 bg-white/30 opacity-60 rounded-lg " id="details">
             <!--content-->
-            <div id="congrats"></div>
-            <div class="justify-content-center mx-auto text-center">
-              <p id="textarea" class="text-center">You have found yourself thrown through time in Doc's time machine.<br>
+            
+            <div class="ml-auto mr-auto justify-content-center text-center">
+              <div class="text-white text-lg" id="congrats"></div>
+              <div class="mb-2 text-lg text-white font-bold" id="roomDisplay"></div>
+              <p id="textarea" class="text-lg text-white font-bold text-center">You have found yourself thrown through time in the Doc's time machine.<br>
                 Embark on a time-traveling quest! Navigate rooms, conquer foes, and uncover clues to return home to 1985.</p><br /><br />
-                <button id="firstRoom" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Enter the First Room</button>
-                <div id="itemDisplay"></div>
-                <div id="yearDisplay">1900</div>
-              <input class="bg-gray-200" type="text" id="usertext" />
-              <div class ="animate__animated animate__headShake"  id="noWay">Sorry, you can`t go that way!</div>
-                <div>
-                  <div class="font-bold" >North</div>
-                  <div class="font-bold" >East</div>
-                  <div class="font-bold" >South</div>
-                  <div class="font-bold" >West</div>
-                  <div class="font-light" id="keyHover">Hover</div>
-                  <div class = "font-light" id="keyDelorean">Delorean</div>
+                <button id="firstRoom" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Enter</button>
+                <div class="text-lg text-white font-bold" id="itemDisplay"></div>
+                
+              <input class="ml-auto mr-auto w-36 bg-gray-200 mt-5 mb-5" type="text" id="usertext" />
+              <div class ="animate__animated animate__headShake text-white"  id="noWay">Sorry, you can`t go that way!</div>
+                        
+            </div>
 
+<!-- ----------------key------- -->
+
+              <div id="key">
+                <div class="text-center text-sm">Type any of the following commands to move around the rooms</div> 
+                <div class="text-center text-sm mb-3">Commands in bold are available for the room you are currently in.</div>
+                <div class="ml-auto mr-auto flex p-15 justify-content-center text-center"> 
+                   
+                  <div class="ml-auto mr-auto">
+                  <div class="text-sm sm:text-base font-bold" >North</div>
+                  <div class="text-sm sm:text-base font-bold" >South</div>
+                  </div class="ml-auto mr-auto">
+                  <div>
+                  <div class="text-sm sm:text-base font-bold" >East</div>
+                  <div class="text-sm sm:text-base font-bold" >West</div>
+                  </div>
+                  <div class="ml-auto mr-auto">
+                  <div class="text-sm sm:text-base font-light" id="keyHover">Hover</div>
+                  <div class = "text-sm sm:text-base font-light" id="keyDelorean">Delorean</div>
+                  </div>
                 </div>
+              </div>
+<!-- ----------------key--------- -->
+
+            </div>
 
               
-            </div>      
+                 
         </div>
+      </div>
       </div>
       <!-- MAIN GAME PANEL------- -->
 
@@ -69,7 +135,11 @@
       <!-- OUTRO PANEL ------------- -->
       <div>
 
-            <div id="outro">OUTRO SCREEN</div>
+            <div id="outro" class="text-center">
+              <div id="finalYearDisplay" class="text-9xl mt-10 text-red-600">1985</div>
+              <div class="text-6xl mt-10 text-green-600">YOU MADE IT</div>
+              <button id="resetBut" class="mt-10 bg-transparent hover:bg-gray-500 text-gray-400 font-base py-1 px-2 border border-gray-400 rounded shadow">RESET</button>
+            </div>
 
       </div>
       <!-- OUTRO PANEL ------------- -->

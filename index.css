@@ -12,13 +12,18 @@
 #outro{
 
     display: none;
+
+    font-family: 'DS-Digital', sans-serif;
 }
 
 body{
 
-    /* background-image: url("images/space.jpg"); */
+    background-image: url("images/space.jpg");
+    background-size: cover;
 
 }
+
+
 
 #noWay{
 
@@ -26,6 +31,44 @@ body{
 }
 
 #usertext{
+    
+    display: none;
+}
 
+#timeCircuit, #smallLogo{
+    font-family: 'DS-Digital', sans-serif;
+                                                
+}
+
+#timeLabel{
+
+    font-family: Arial, sans-serif;
+}
+
+#textarea{
+
+    /* font-family: 'DS-Digital', sans-serif; */
+}
+
+#key{
+    
     visibility: hidden;
 }
+
+#back, #to, #the, #future {
+    font-family: "Exo";
+    -webkit-text-stroke: 3px #ccc;
+  } 
+  
+  #back, #to , #the {  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;  
+  }
+  
+  
+  
+  #to, #the , #future {
+    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

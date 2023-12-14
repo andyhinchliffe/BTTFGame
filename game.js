@@ -6,6 +6,9 @@ const firstRoom = document.getElementById("firstRoom");
 const itemDisplay = document.getElementById("itemDisplay");
 const keyHover = document.getElementById("keyHover");
 const keyDelorean = document.getElementById("keyDelorean");
+const outro = document.getElementById("outro");
+const finalYearDisplay = document.getElementById("finalYearDisplay");
+const restBut = document.getElementById("resetBut")
 
   
 
@@ -19,11 +22,39 @@ function displayGame() {
 function displayEnd(){
     gamearea.style.display = "none";
     outro.style.display = "block";
+    scrollUp()
+
+}
+
+function scrollUp(){
+
+  
+  let countUp = 1800;
+  const timer = setInterval(() => {
+    finalYearDisplay.innerText = countUp;
+    if(countUp == 1985){
+      clearInterval(timer);
+    } else {
+      countUp ++;
+      // finalYearDisplay.innerText = countUp;
+    }
+  }, 10);
+}
+
+function reset(){
+  currentRoom = HVSchool;
+  intro.style.display = "block";
+  gamearea.style.display = "none";
+  outro.style.display = "none";
+  location.reload();
+  
 
 }
 
 function clearWarning(){
+  document.getElementById("noWay").classList.remove("animate__headShake")
   document.getElementById("noWay").style.display = "none"
+
 }
 
 
@@ -129,6 +160,7 @@ getDetails() {
       return this._linkedRooms[direction];
     } else {
         document.getElementById("noWay").style.display = "block"
+        document.getElementById("noWay").classList.add("animate__headShake")
         setInterval(clearWarning, 3000);
         
       
@@ -265,7 +297,7 @@ const OWestHill = new Room("Old West Hill Valley", 1885);
 OWestHill.description = "a dusty Old West town with cowboys and plenty of hidden danger.";
 const FHillValley = new Room("Future Hill Valley", 2015);
 FHillValley.description = "a futuristic metropolis where tech wonders and choices shape your destiny.";
-const WestonSaloon = new Room("Western Saloon", 1955);
+const WestonSaloon = new Room("Western Saloon", 1885);
 WestonSaloon.description = "a lively 1885 saloon where you can meet cowboys, play cards, and unravel Wild West secrets.";
 const AlternateFuture = new Room("Alternate Future", 2025);
 AlternateFuture.description = "an alternate 2025 dystopia where you can navigate transformed landscapes and uncover hidden truths.";
@@ -317,7 +349,7 @@ DocBrown.conversation = "You need to find a way to get up to 88 miles per hour t
 // ----------CREATE ITEMS & PUT IN ROOMS--------------------------
 
 const HoverBoard = new Item("Hover Board");
-HoverBoard.description = "fast futuristic hovering board";
+HoverBoard.description = "fast futuristic hovering skate board";
 FHillValley.item = HoverBoard;
 
 const Delorean = new Item("Delorean");
@@ -357,15 +389,15 @@ function displayRoomInfo(room) {
     itemDisplay.innerText = itemText;
     
     
-    console.log(room.item._name)
+    // console.log(room.item._name)
     
   
     textContent = "<p>" + room.describe() +"</p>" + "<p>" +
       occupantMsg + "</p>" + "<p>" + room.getDetails() + "</p>";
 
         
-    
-    document.getElementById("yearDisplay").innerText = room.year()
+    document.getElementById("roomDisplay").innerText = room.name ;
+    document.getElementById("yearDisplay").innerText = room.year();
     document.getElementById("textarea").innerHTML = textContent;
     document.getElementById("usertext").innerHTML = '><input type="text" id="usertext" />';
     document.getElementById("usertext").focus();
@@ -391,7 +423,7 @@ function startGame() {
         congrats.innerText=""
         const directions = ["north", "south", "east", "west"]
         if (command.toLowerCase()==="hover"  && currentRoom.name==="Future Hill Valley"){
-            congrats.innerText="Well done on getting past Biff!! Now it is time to get back to 1985"
+            congrats.innerText="Well done on getting past Biff and into the Weston Saloon!! Now it is time to get back to 1985"
             keyHover.classList.remove("font-bold");
             keyHover.classList.add("font-light");
             currentRoom = WestonSaloon
@@ -420,14 +452,15 @@ function startGame() {
 
   function firstRoomStart(){
     firstRoom.style.display="none";
-    document.getElementById("usertext").style.visibility="visible"
-
+    document.getElementById("usertext").style.display="block"
+    document.getElementById("key").style.visibility = "visible"
     startGame();
 
   }
 
   startBut.addEventListener("click", displayGame);
   firstRoom.addEventListener("click", firstRoomStart)
+  resetBut.addEventListener("click", reset)
 
 
 //   --------------------------------
@@ -435,5 +468,5 @@ function startGame() {
 //   ---------------------------------
 
 
-
+scrollUp()
   
