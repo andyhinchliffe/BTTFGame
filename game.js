@@ -1,3 +1,6 @@
+// ------------------Display Sections ----------------------
+
+
 const startBut = document.getElementById("startBut");
 const intro = document.getElementById("intro");
 const congrats = document.getElementById("congrats");
@@ -10,7 +13,11 @@ const outro = document.getElementById("outro");
 const finalYearDisplay = document.getElementById("finalYearDisplay");
 const restBut = document.getElementById("resetBut")
 
-  
+
+// ------------------Display Sections ----------------------
+
+
+// -----------------Various Functions used----------
 
 function displayGame() {
     intro.style.display = "none";
@@ -57,6 +64,9 @@ function clearWarning(){
 
 }
 
+
+
+// -----------------Various Functions used----------
 
 // ---------------------------------
 // ROOMS ---------------------------
@@ -312,10 +322,10 @@ ClockTower.description = "a pivotal 1955 Clock Tower, your decisions here could 
 // ---------------------------------------------------
 HVSchool.linkRoom("north", FHillValley);
 HVSchool.linkRoom("west", OWestHill);
-// OWestHill.linkRoom("north", OWestHill);
+
 OWestHill.linkRoom("east", HVSchool);
 
-// FHillValley.linkRoom("east", WestonSaloon);
+
 FHillValley.linkRoom("south", HVSchool);
 
 
@@ -389,13 +399,13 @@ function displayRoomInfo(room) {
     itemDisplay.innerText = itemText;
     
     
-    // console.log(room.item._name)
+    
     
   
     textContent = "<p>" + room.describe() +"</p>" + "<p>" +
       occupantMsg + "</p>" + "<p>" + room.getDetails() + "</p>";
 
-        
+// ---------Use input values --------------    
     document.getElementById("roomDisplay").innerText = room.name ;
     document.getElementById("yearDisplay").innerText = room.year();
     document.getElementById("textarea").innerHTML = textContent;
@@ -450,6 +460,11 @@ function startGame() {
     });
   }
 
+
+  //   -----------------------------------------------
+//   Start Game - move from into screen to first room
+//   -------------------------------------------------
+
   function firstRoomStart(){
     firstRoom.style.display="none";
     document.getElementById("usertext").style.display="block"
@@ -457,16 +472,16 @@ function startGame() {
     startGame();
 
   }
-
+// -----------Make buttons work----------------------------
   startBut.addEventListener("click", displayGame);
   firstRoom.addEventListener("click", firstRoomStart)
   resetBut.addEventListener("click", reset)
+  // -----------Make buttons work----------------------------
 
 
-//   --------------------------------
-//   Start Game
-//   ---------------------------------
 
 
+
+// ------Final Screen Year Animation ---------
 scrollUp()
-  
+// ------Final Screen Year Animation ---------
